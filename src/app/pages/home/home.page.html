@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Auction
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true"*ngIf="auth.payload" >
+  <ion-card *ngFor="let auction of auth.payload.items">
+
+    <h2>
+      {{auction.label}}
+      </h2>
+    <img *ngIf="!auction.associatedVehicle.vehicleImages" src="../../../assets/icon/indisponible.jpg"/>
+    <ion-slide *ngFor="let img of auction.associatedVehicle.vehicleImages">
+      <img *ngIf="img.url" [src]="img.url" />
+    </ion-slide>
+   
+    <ion-card-content>
+
+      <p>
+        Erstzulassung: {{auction.associatedVehicle.ez}}
+      </p>
+      <p>
+        Mileage: {{auction.associatedVehicle. mileageInKm }} km
+      </p>
+      <p>
+      Full Type:  {{auction.associatedVehicle.fuelType}}
+      </p>
+      <p>
+        Transmission:  {{auction.associatedVehicle.transmission}}
+      </p>
+      <p>
+        Current highest bid: {{auction.currentHighestBidValue}} €
+      </p>
+      <p>
+        Remaining Time: {{auction.remainingTimeInSeconds |  date:'HH:mm:ss'}}
+      </p>
+    <div  >
+    <p>
+      Highest Bidder: <span *ngIf="auction.amIHighestBidder" >  Yes</span> 
+                      <span  *ngIf="!auction.amIHighestBidder" >  No</span>
+    </p>  
+    </div>
+      
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

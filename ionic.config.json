@@ -1,0 +1,7 @@
+{
+  "name": "cos-coding-challenge",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
